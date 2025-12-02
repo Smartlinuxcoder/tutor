@@ -2,62 +2,48 @@
 	let { form } = $props();
 </script>
 
-<div class="relative flex min-h-screen items-center justify-center p-4">
-	<div class="glass-card w-full max-w-md">
-		<div class="mb-8 text-center">
-			<h2 class="mb-2 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-3xl font-bold text-transparent">
-				Bentornato!
-			</h2>
-			<p class="text-gray-600 dark:text-gray-400">Accedi al tuo account</p>
-		</div>
+<div class="flex min-h-screen items-center justify-center bg-gray-100">
+	<div class="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
+		<h2 class="mb-6 text-center text-2xl font-bold text-gray-800">Accedi</h2>
 
 		{#if form?.error}
-			<div class="mb-4 rounded-lg bg-red-100/80 dark:bg-red-900/30 p-4 text-red-700 dark:text-red-300 backdrop-blur">
+			<div class="mb-4 rounded bg-red-100 p-3 text-red-700">
 				{form.error}
 			</div>
 		{/if}
 
-		<form method="POST" class="space-y-5">
+		<form method="POST" class="space-y-4">
 			<div>
-				<label for="username" class="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300">Username</label>
+				<label for="username" class="block text-sm font-medium text-gray-700">Username</label>
 				<input
 					type="text"
 					id="username"
 					name="username"
 					required
-					class="input-glass"
-					placeholder="Inserisci username"
+					class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
 				/>
 			</div>
 
 			<div>
-				<label for="password" class="mb-2 block text-sm font-semibold text-gray-700 dark:text-gray-300">Password</label>
+				<label for="password" class="block text-sm font-medium text-gray-700">Password</label>
 				<input
 					type="password"
 					id="password"
 					name="password"
 					required
-					class="input-glass"
-					placeholder="Inserisci password"
+					class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
 				/>
 			</div>
 
-			<button type="submit" class="btn-primary w-full">
+			<button
+				type="submit"
+				class="w-full rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+			>
 				Accedi
 			</button>
 		</form>
-		
-		<p class="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
-			Non hai un account? 
-			<a href="/register" class="font-semibold text-blue-600 hover:text-purple-600 dark:text-blue-400 dark:hover:text-purple-400 transition-colors">
-				Registrati
-			</a>
+		<p class="mt-4 text-center text-sm text-gray-600">
+			Non hai un account? <a href="/register" class="text-blue-600 hover:underline">Registrati</a>
 		</p>
-	</div>
-
-	<!-- Decorative blobs -->
-	<div class="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-		<div class="absolute -top-1/2 -left-1/4 h-96 w-96 rounded-full bg-blue-400/30 blur-3xl"></div>
-		<div class="absolute -bottom-1/2 -right-1/4 h-96 w-96 rounded-full bg-purple-400/30 blur-3xl"></div>
 	</div>
 </div>
