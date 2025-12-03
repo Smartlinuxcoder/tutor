@@ -1,1 +1,88 @@
 @import 'tailwindcss';
+
+:root {
+	--bg-primary: #f0f4ff;
+	--bg-secondary: #e0e7ff;
+	--bg-gradient-start: #667eea;
+	--bg-gradient-end: #764ba2;
+	--glass-bg: rgba(255, 255, 255, 0.7);
+	--glass-border: rgba(255, 255, 255, 0.3);
+	--text-primary: #1f2937;
+	--text-secondary: #4b5563;
+	--text-muted: #6b7280;
+	--accent: #6366f1;
+	--accent-hover: #4f46e5;
+	--card-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+}
+
+:root.dark {
+	--bg-primary: #0f172a;
+	--bg-secondary: #1e293b;
+	--bg-gradient-start: #1e1b4b;
+	--bg-gradient-end: #312e81;
+	--glass-bg: rgba(30, 41, 59, 0.7);
+	--glass-border: rgba(100, 116, 139, 0.3);
+	--text-primary: #f1f5f9;
+	--text-secondary: #cbd5e1;
+	--text-muted: #94a3b8;
+	--accent: #818cf8;
+	--accent-hover: #a5b4fc;
+	--card-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+body {
+	background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+	min-height: 100vh;
+	color: var(--text-primary);
+	transition: background 0.3s ease, color 0.3s ease;
+}
+
+.glass-card {
+	background: var(--glass-bg);
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+	border: 1px solid var(--glass-border);
+	box-shadow: var(--card-shadow);
+}
+
+.btn-primary {
+	background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+	color: white;
+	transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+}
+
+.btn-secondary {
+	background: var(--glass-bg);
+	border: 1px solid var(--glass-border);
+	color: var(--text-primary);
+	backdrop-filter: blur(8px);
+	transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+	background: var(--accent);
+	color: white;
+}
+
+.input-glass {
+	background: var(--glass-bg);
+	border: 1px solid var(--glass-border);
+	color: var(--text-primary);
+	backdrop-filter: blur(8px);
+	transition: all 0.3s ease;
+}
+
+.input-glass:focus {
+	border-color: var(--accent);
+	outline: none;
+	box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+}
+
+.input-glass::placeholder {
+	color: var(--text-muted);
+}

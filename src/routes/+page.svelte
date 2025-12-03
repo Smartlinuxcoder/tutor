@@ -1,21 +1,23 @@
-<div class="flex min-h-screen flex-col items-center justify-center bg-gray-100 text-center">
-	<h1 class="mb-4 text-5xl font-bold text-blue-600">Tutor & Professor Portal</h1>
-	<p class="mb-8 text-xl text-gray-600">
-		Gestisci le tue attività di tutoraggio o monitora le performance dei tuoi studenti.
-	</p>
+<div class="flex min-h-screen flex-col items-center justify-center p-4 text-center">
+	<div class="glass-card rounded-md p-10 max-w-2xl">
+		<h1 class="mb-4 text-5xl font-bold" style="color: var(--accent);">Tutor & Professori</h1>
+		<p class="mb-8 text-xl" style="color: var(--text-secondary);">
+			Gestisci le attività di tutoraggio.
+		</p>
 
-	<div class="space-x-4">
-		<a
-			href="/login"
-			class="rounded-md bg-blue-600 px-6 py-3 text-lg font-semibold text-white shadow-md transition hover:bg-blue-700"
-		>
-			Accedi
-		</a>
-		<a
-			href="/register"
-			class="rounded-md bg-white px-6 py-3 text-lg font-semibold text-blue-600 shadow-md transition hover:bg-gray-50"
-		>
-			Registrati
-		</a>
+		<div class="flex flex-col sm:flex-row gap-4 justify-center">
+			<a
+				href="/login"
+				class="btn-primary rounded-md px-8 py-3 text-lg font-semibold shadow-lg"
+			>
+				Accedi
+			</a>
+			<a
+				href="/register"
+				class="btn-secondary rounded-md px-8 py-3 text-lg font-semibold"
+			>
+				Registrati
+			</a>
+		</div>
 	</div>
 </div>

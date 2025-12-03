@@ -8,8 +8,8 @@ import { v4 as uuidv4 } from 'uuid';
 export const actions = {
 	default: async ({ request, cookies }) => {
 		const data = await request.formData();
-		const username = data.get('username');
-		const password = data.get('password');
+		const username = data.get('username')?.trim();
+		const password = data.get('password')?.trim();
 
 		if (!username || !password) {
 			return fail(400, { error: 'Username e password sono obbligatori' });

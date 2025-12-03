@@ -16,7 +16,6 @@
 				doc.addPage();
 			}
 
-			// Header Info
 			doc.setFontSize(18);
 			doc.text(`Registro Lezioni: ${tutor.fullName}`, 14, 15);
 
@@ -65,9 +64,9 @@
 		doc.save('registro-completo-lezioni.pdf');
 	};
 
-	const downloadAllReviewsPdf = () => {
+	const downloadAllFeedbackPdf = () => {
 		const doc = new jsPDF();
-		doc.text('Recensioni Complete Tutor', 14, 15);
+		doc.text('Feedback Completi Tutor', 14, 15);
 
 		const tableData = data.allReviews.map(review => {
 			const tutor = data.tutors.find(t => t.id === review.tutorId);
@@ -85,11 +84,10 @@
 			startY: 20
 		});
 
-		doc.save('recensioni-complete.pdf');
+		doc.save('feedback-completi.pdf');
 	};
 
 	onMount(() => {
-		// General Chart: Average Rating per Tutor
 		const ctx = generalChartCanvas.getContext('2d');
 		new Chart(ctx, {
 			type: 'bar',
@@ -99,8 +97,8 @@
 					{
 						label: 'Media Voti',
 						data: data.tutors.map((t) => t.averageRating),
-						backgroundColor: 'rgba(59, 130, 246, 0.5)',
-						borderColor: 'rgb(59, 130, 246)',
+						backgroundColor: 'rgba(99, 102, 241, 0.5)',
+						borderColor: 'rgb(99, 102, 241)',
 						borderWidth: 1
 					}
 				]
@@ -116,13 +114,11 @@
 			}
 		});
 
-		// Per-Tutor Charts: Rating Distribution
 		data.tutors.forEach((tutor) => {
 			if (tutorCharts[tutor.id]) {
 				const ctxTutor = tutorCharts[tutor.id].getContext('2d');
 				
-				// Calculate distribution
-				const distribution = [0, 0, 0, 0, 0]; // 1 to 5 stars
+				const distribution = [0, 0, 0, 0, 0];
 				tutor.reviews.forEach(r => {
 					if (r.rating >= 1 && r.rating <= 5) {
 						distribution[r.rating - 1]++;
@@ -136,11 +132,11 @@
 						datasets: [{
 							data: distribution,
 							backgroundColor: [
-								'#ef4444', // Red
-								'#f97316', // Orange
-								'#eab308', // Yellow
-								'#84cc16', // Lime
-								'#22c55e'  // Green
+								'#ef4444',
+								'#f97316',
+								'#eab308',
+								'#84cc16',
+								'#22c55e'
 							]
 						}]
 					},
@@ -161,36 +157,36 @@
 	});
 </script>
 
-<div class="min-h-screen bg-gray-100 p-8">
+<div class="min-h-screen p-8">
 	<div class="mx-auto max-w-6xl">
-		<header class="mb-8 flex items-center justify-between rounded-lg bg-white p-6 shadow-md">
+		<header class="glass-card mb-8 flex items-center justify-between rounded-md p-6">
 			<div>
-				<h1 class="text-3xl font-bold text-gray-800">Dashboard Professore</h1>
-				<p class="text-gray-600">Benvenuto, {data.user.fullName}</p>
+				<h1 class="text-3xl font-bold" style="color: var(--text-primary);">Dashboard Professore</h1>
+				<p style="color: var(--text-secondary);">Benvenuto, {data.user.fullName}</p>
 			</div>
 			<div class="text-right">
 				<form action="/logout" method="POST">
-					<button type="submit" class="text-red-600 hover:underline">Esci</button>
+					<button type="submit" class="text-red-400 hover:text-red-300 hover:underline">Esci</button>
 				</form>
 			</div>
 		</header>
 
 		<!-- General Stats -->
-		<div class="mb-8 rounded-lg bg-white p-6 shadow-md">
+		<div class="glass-card mb-8 rounded-md p-6">
 			<div class="flex justify-between items-center mb-4">
-				<h2 class="text-xl font-semibold text-gray-800">Panoramica Tutor</h2>
+				<h2 class="text-xl font-semibold" style="color: var(--text-primary);">Panoramica Tutor</h2>
 				<div class="space-x-2">
 					<button
 						onclick={downloadAllRegistriesPdf}
-						class="rounded bg-green-600 px-3 py-1 text-sm text-white hover:bg-green-700"
+						class="rounded-md bg-green-600 px-3 py-1.5 text-sm text-white hover:bg-green-500 transition-all"
 					>
 						Scarica Tutti i Registri
 					</button>
 					<button
-						onclick={downloadAllReviewsPdf}
-						class="rounded bg-blue-600 px-3 py-1 text-sm text-white hover:bg-blue-700"
+						onclick={downloadAllFeedbackPdf}
+						class="btn-primary rounded-md px-3 py-1.5 text-sm"
 					>
-						Scarica Tutte le Recensioni
+						Scarica Tutti i Feedback
 					</button>
 				</div>
 			</div>
@@ -200,25 +196,26 @@
 		</div>
 
 		<!-- Tutors List -->
-		<h2 class="mb-6 text-2xl font-bold text-gray-800">Dettaglio Tutor</h2>
+		<h2 class="mb-6 text-2xl font-bold" style="color: var(--text-primary);">Dettaglio Tutor</h2>
 		<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 			{#each data.tutors as tutor}
-				<div class="rounded-lg bg-white p-6 shadow-md">
+				<div class="glass-card rounded-md p-6">
 					<div class="mb-4 flex items-center justify-between">
-						<h3 class="text-lg font-bold text-gray-800">{tutor.fullName}</h3>
-						<span class="rounded-full bg-blue-100 px-2 py-1 text-xs font-semibold text-blue-800">
+						<h3 class="text-lg font-bold" style="color: var(--text-primary);">{tutor.fullName}</h3>
+						<span class="rounded-md px-2 py-1 text-xs font-semibold" style="background: var(--accent); color: white;">
 							{tutor.averageRating} / 5
 						</span>
 					</div>
 					
-					<p class="mb-4 text-sm text-gray-600">
-						Recensioni totali: <span class="font-semibold">{tutor.reviewCount}</span>
+					<p class="mb-4 text-sm" style="color: var(--text-secondary);">
+						Feedback totali: <span class="font-semibold">{tutor.reviewCount}</span>
 					</p>
 
 					<div class="mb-4 text-center">
 						<a
 							href={`/professor/registry/${tutor.id}`}
-							class="text-sm font-medium text-blue-600 hover:underline"
+							class="text-sm font-medium hover:underline"
+							style="color: var(--accent);"
 						>
 							Visualizza Registro Lezioni
 						</a>

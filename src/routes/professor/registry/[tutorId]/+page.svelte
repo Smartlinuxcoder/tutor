@@ -7,7 +7,6 @@
 	const downloadRegistryPdf = () => {
 		const doc = new jsPDF();
 		
-		// Header Info
 		doc.setFontSize(18);
 		doc.text(`Registro Lezioni: ${data.tutor.fullName}`, 14, 15);
 
@@ -53,9 +52,9 @@
 		doc.save(`registro-${data.tutor.fullName.replace(/\s+/g, '-').toLowerCase()}.pdf`);
 	};
 
-	const downloadReviewsPdf = () => {
+	const downloadFeedbackPdf = () => {
 		const doc = new jsPDF();
-		doc.text(`Recensioni: ${data.tutor.fullName}`, 14, 15);
+		doc.text(`Feedback: ${data.tutor.fullName}`, 14, 15);
 
 		const tableData = data.reviews.map(review => [
 			new Date(review.createdAt).toLocaleDateString('it-IT'),
@@ -69,91 +68,76 @@
 			startY: 20
 		});
 
-		doc.save(`recensioni-${data.tutor.fullName.replace(/\s+/g, '-').toLowerCase()}.pdf`);
+		doc.save(`feedback-${data.tutor.fullName.replace(/\s+/g, '-').toLowerCase()}.pdf`);
 	};
 </script>
 
-<div class="min-h-screen bg-gray-100 p-8">
+<div class="min-h-screen p-8">
 	<div class="mx-auto max-w-6xl">
-		<header class="mb-8 flex items-center justify-between rounded-lg bg-white p-6 shadow-md">
+		<header class="glass-card mb-8 flex items-center justify-between rounded-md p-6">
 			<div>
-				<h1 class="text-3xl font-bold text-gray-800">Registro Lezioni: {data.tutor.fullName}</h1>
-				<p class="text-gray-600">Materia: {data.tutor.subject || 'Non specificata'}</p>
+				<h1 class="text-3xl font-bold" style="color: var(--text-primary);">Registro Lezioni: {data.tutor.fullName}</h1>
+				<p style="color: var(--text-secondary);">Materia: {data.tutor.subject || 'Non specificata'}</p>
 			</div>
 			<div class="flex items-center gap-4">
 				<button
 					onclick={downloadRegistryPdf}
-					class="rounded bg-green-600 px-3 py-1 text-sm text-white hover:bg-green-700"
+					class="rounded-md bg-green-600 px-3 py-1.5 text-sm text-white hover:bg-green-500 transition-all"
 				>
 					Scarica Registro
 				</button>
 				<button
-					onclick={downloadReviewsPdf}
-					class="rounded bg-blue-600 px-3 py-1 text-sm text-white hover:bg-blue-700"
+					onclick={downloadFeedbackPdf}
+					class="btn-primary rounded-md px-3 py-1.5 text-sm"
 				>
-					Scarica Recensioni
+					Scarica Feedback
 				</button>
-				<a href="/professor" class="text-blue-600 hover:underline">Torna alla Dashboard</a>
+				<a href="/professor" class="hover:underline" style="color: var(--accent);">Torna alla Dashboard</a>
 			</div>
 		</header>
 
-		<div class="rounded-lg bg-white p-6 shadow-md">
+		<div class="glass-card rounded-md p-6">
 			{#if data.entries.length === 0}
-				<p class="text-center text-gray-500">Nessuna lezione registrata per questo tutor.</p>
+				<p class="text-center" style="color: var(--text-muted);">Nessuna lezione registrata per questo tutor.</p>
 			{:else}
 				<div class="overflow-x-auto">
-					<table class="min-w-full divide-y divide-gray-200">
-						<thead class="bg-gray-50">
-							<tr>
-								<th
-									scope="col"
-									class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
-								>
+					<table class="min-w-full divide-y" style="border-color: var(--glass-border);">
+						<thead>
+							<tr style="background: var(--glass-bg);">
+								<th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style="color: var(--text-muted);">
 									Data
 								</th>
-								<th
-									scope="col"
-									class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
-								>
+								<th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style="color: var(--text-muted);">
 									Studente
 								</th>
-								<th
-									scope="col"
-									class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
-								>
+								<th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style="color: var(--text-muted);">
 									Classe
 								</th>
-								<th
-									scope="col"
-									class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
-								>
+								<th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style="color: var(--text-muted);">
 									Argomenti
 								</th>
-								<th
-									scope="col"
-									class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500"
-								>
+								<th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider" style="color: var(--text-muted);">
 									Firma
 								</th>
 							</tr>
 						</thead>
-						<tbody class="divide-y divide-gray-200 bg-white">
+						<tbody class="divide-y" style="border-color: var(--glass-border);">
 							{#each data.entries as entry}
 								<tr>
-									<td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
+									<td class="whitespace-nowrap px-6 py-4 text-sm" style="color: var(--text-muted);">
 										{new Date(entry.date).toLocaleDateString('it-IT')}
 									</td>
-									<td class="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
+									<td class="whitespace-nowrap px-6 py-4 text-sm font-medium" style="color: var(--text-primary);">
 										{entry.studentFirstName} {entry.studentLastName}
 									</td>
-									<td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
+									<td class="whitespace-nowrap px-6 py-4 text-sm" style="color: var(--text-muted);">
 										{entry.studentClass}
 									</td>
-									<td class="px-6 py-4 text-sm text-gray-500">
+									<td class="px-6 py-4 text-sm" style="color: var(--text-secondary);">
 										{entry.topicsCovered}
 									</td>
-									<td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
-										<img src={entry.signatureData} alt="Firma" class="h-12 border border-gray-200" />
+									<td class="whitespace-nowrap px-6 py-4 text-sm">
+										<img src={entry.signatureData} alt="Firma" class="h-12 rounded-md" style="border: 1px solid var(--glass-border);" />
 									</td>
 								</tr>
 							{/each}

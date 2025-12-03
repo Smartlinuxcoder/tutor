@@ -2,56 +2,56 @@
 	let { form } = $props();
 </script>
 
-<div class="flex min-h-screen items-center justify-center bg-gray-100">
-	<div class="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
-		<h2 class="mb-6 text-center text-2xl font-bold text-gray-800">Registrazione</h2>
+<div class="flex min-h-screen items-center justify-center p-4">
+	<div class="glass-card w-full max-w-md rounded-md p-8">
+		<h2 class="mb-6 text-center text-2xl font-bold" style="color: var(--text-primary);">Registrazione</h2>
 
 		{#if form?.error}
-			<div class="mb-4 rounded bg-red-100 p-3 text-red-700">
+			<div class="mb-4 rounded-md bg-red-500/20 border border-red-500/30 p-3 text-red-400">
 				{form.error}
 			</div>
 		{/if}
 
 		<form method="POST" class="space-y-4">
 			<div>
-				<label for="fullName" class="block text-sm font-medium text-gray-700">Nome Completo</label>
+				<label for="fullName" class="block text-sm font-medium" style="color: var(--text-secondary);">Nome Completo</label>
 				<input
 					type="text"
 					id="fullName"
 					name="fullName"
 					required
-					class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+					class="input-glass mt-1 block w-full rounded-md p-2.5"
 				/>
 			</div>
 
 			<div>
-				<label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+				<label for="username" class="block text-sm font-medium" style="color: var(--text-secondary);">Username</label>
 				<input
 					type="text"
 					id="username"
 					name="username"
 					required
-					class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+					class="input-glass mt-1 block w-full rounded-md p-2.5"
 				/>
 			</div>
 
 			<div>
-				<label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+				<label for="password" class="block text-sm font-medium" style="color: var(--text-secondary);">Password</label>
 				<input
 					type="password"
 					id="password"
 					name="password"
 					required
-					class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+					class="input-glass mt-1 block w-full rounded-md p-2.5"
 				/>
 			</div>
 
 			<div>
-				<label for="role" class="block text-sm font-medium text-gray-700">Ruolo</label>
+				<label for="role" class="block text-sm font-medium" style="color: var(--text-secondary);">Ruolo</label>
 				<select
 					id="role"
 					name="role"
-					class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+					class="input-glass mt-1 block w-full rounded-md p-2.5"
 					onchange={(e) => {
 						const secretField = document.getElementById('secret-field');
 						const subjectField = document.getElementById('subject-field');
@@ -70,36 +70,48 @@
 			</div>
 
 			<div id="subject-field">
-				<label for="subject" class="block text-sm font-medium text-gray-700">Materia (solo per Tutor)</label>
+				<label for="subject" class="block text-sm font-medium" style="color: var(--text-secondary);">Materia (solo per Tutor)</label>
 				<input
 					type="text"
 					id="subject"
 					name="subject"
-					class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+					class="input-glass mt-1 block w-full rounded-md p-2.5"
 				/>
 			</div>
 
 			<div id="secret-field" class="hidden">
-				<label for="secret" class="block text-sm font-medium text-gray-700"
-					>Codice Segreto (solo per Professori)</label
-				>
+				<label for="secret" class="block text-sm font-medium" style="color: var(--text-secondary);">Codice Segreto (solo per Professori)</label>
 				<input
 					type="password"
 					id="secret"
 					name="secret"
-					class="mt-1 block w-full rounded-md border border-gray-300 p-2 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+					class="input-glass mt-1 block w-full rounded-md p-2.5"
 				/>
+			</div>
+
+			<!-- Privacy Checkbox -->
+			<div class="flex items-start gap-3">
+				<input
+					type="checkbox"
+					id="privacyAccept"
+					name="privacyAccept"
+					required
+					class="mt-1 h-4 w-4 rounded border-2 accent-[var(--accent)]"
+				/>
+				<label for="privacyAccept" class="text-sm" style="color: var(--text-secondary);">
+					I dati nelle aree riservate di questo sito sono confidenziali, non li utilizzerò al di fuori del loro scopo.
+				</label>
 			</div>
 
 			<button
 				type="submit"
-				class="w-full rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+				class="btn-primary w-full rounded-md px-4 py-2.5 font-semibold"
 			>
 				Registrati
 			</button>
 		</form>
-		<p class="mt-4 text-center text-sm text-gray-600">
-			Hai già un account? <a href="/login" class="text-blue-600 hover:underline">Accedi</a>
+		<p class="mt-4 text-center text-sm" style="color: var(--text-muted);">
+			Hai già un account? <a href="/login" class="font-medium hover:underline" style="color: var(--accent);">Accedi</a>
 		</p>
 	</div>
 </div>

@@ -29,10 +29,10 @@ export const actions = {
 		const tutorId = parseInt(params.tutorId);
 		const data = await request.formData();
 		const rating = parseInt(data.get('rating'));
-		const comment = data.get('comment');
+		const comment = data.get('comment')?.trim();
 
 		if (cookies.get(`reviewed_tutor_${tutorId}`)) {
-			return fail(429, { error: 'Hai già inviato una recensione per questo tutor oggi.' });
+			return fail(429, { error: 'Hai già inviato un feedback per questo tutor oggi.' });
 		}
 
 		if (!rating || rating < 1 || rating > 5) {
@@ -44,7 +44,7 @@ export const actions = {
 		await db.insert(reviews).values({
 			tutorId,
 			rating,
-			comment,
+			comment: comment || null,
 			ipAddress
 		});
 
