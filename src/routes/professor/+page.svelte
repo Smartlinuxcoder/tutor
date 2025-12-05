@@ -176,12 +176,12 @@
 			<div class="flex justify-between items-center mb-4">
 				<h2 class="text-xl font-semibold" style="color: var(--text-primary);">Panoramica Tutor</h2>
 				<div class="space-x-2">
-					<button
+					<!-- <button
 						onclick={downloadAllRegistriesPdf}
 						class="rounded-md bg-green-600 px-3 py-1.5 text-sm text-white hover:bg-green-500 transition-all"
 					>
 						Scarica Tutti i Registri
-					</button>
+					</button> -->
 					<button
 						onclick={downloadAllFeedbackPdf}
 						class="btn-primary rounded-md px-3 py-1.5 text-sm"
@@ -211,7 +211,7 @@
 						Feedback totali: <span class="font-semibold">{tutor.reviewCount}</span>
 					</p>
 
-					<div class="mb-4 text-center">
+					<!-- <div class="mb-4 text-center">
 						<a
 							href={`/professor/registry/${tutor.id}`}
 							class="text-sm font-medium hover:underline"
@@ -219,7 +219,7 @@
 						>
 							Visualizza Registro Lezioni
 						</a>
-					</div>
+					</div> -->
 
 					<div class="h-40 w-full flex justify-center">
 						<canvas bind:this={tutorCharts[tutor.id]}></canvas>
