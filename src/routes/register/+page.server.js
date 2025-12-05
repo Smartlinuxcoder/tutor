@@ -27,7 +27,7 @@ export const actions = {
 			return fail(400, { error: 'La materia è obbligatoria per i tutor' });
 		}
 
-		if (role === 'professor' && secret !== 'SUPER_SECRET_PROFESSOR_CODE') {
+		if (role === 'professor' && secret !== 'batman') {
 			return fail(403, { error: 'Codice segreto errato per la registrazione come professore' });
 		}
 
